@@ -3,6 +3,7 @@ package usertask
 import (
 	"base/log"
 	"base/net"
+	"base/util"
 	engineNet "net"
 )
 
@@ -19,7 +20,8 @@ func NewLoginTask(conn engineNet.Conn) *LoginTask {
 }
 
 func (this *LoginTask) ParseMsg(data []byte) bool {
-	log.Debug.Println("addr: ", this.Conn.RemoteAddr(), " recv data: ", data)
+	value := util.BytesToUint32(data)
+	log.Debug.Println("addr:", this.Conn.RemoteAddr(), " recv data:", data, "value:", value)
 	return true
 }
 

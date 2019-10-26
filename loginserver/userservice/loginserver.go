@@ -12,7 +12,9 @@ type LoginServer struct {
 }
 
 func NewLoginServer() *LoginServer{
-	ser := &LoginServer{}
+	ser := &LoginServer{
+		*net.NewService(),
+	}
 	ser.SetUserService(ser)
 	return ser
 }

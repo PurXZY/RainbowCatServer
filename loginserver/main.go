@@ -10,5 +10,5 @@ func main() {
 	log.InitLog(os.Stdout, os.Stdout, os.Stdout)
 	ser := userservice.NewLoginServer()
 	ser.Start()
-	log.Info.Println("all over")
+	log.Info.Println("server all over")
 }

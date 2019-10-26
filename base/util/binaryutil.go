@@ -1,19 +1,15 @@
 package util
 
 import (
-	"bytes"
 	"encoding/binary"
 )
 
-func IntToBytes(num int) []byte {
-	buf := new(bytes.Buffer)
-	_ = binary.Write(buf, binary.BigEndian, num)
-	return buf.Bytes()
+func Uint32ToBytes(num uint32) []byte {
+	var buf = make([]byte, 4)
+	binary.BigEndian.PutUint32(buf, num)
+	return buf
 }
 
-func BytesToInt(bys []byte) int {
-	bytebuff := bytes.NewBuffer(bys)
-	var data int64
-	_ = binary.Read(bytebuff, binary.BigEndian, &data)
-	return int(data)
+func BytesToUint32(buf []byte) uint32 {
+	return binary.BigEndian.Uint32(buf)
 }

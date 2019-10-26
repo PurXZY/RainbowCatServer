@@ -75,13 +75,17 @@ func (this *TcpTask) SendData (data []byte) {
 		return
 	}
 	dataSize := len(data)
+	if dataSize == 0 {
+		log.Warn.Println("send data size:", dataSize)
+		return
+	}
 	this.sendMutex.Lock()
 	curBuffSize := this.sendBuff.RdSize()
 	if curBuffSize + dataSize > sendDataMaxSize {
 		log.Error.Printf("send buff over limit cur:%d new:%d", curBuffSize, dataSize)
 		this.Close()
 	}
-	this.sendBuff.Append(util.IntToBytes(dataSize))
+	this.sendBuff.Append(util.Uint32ToBytes(uint32(dataSize)))
 	this.sendBuff.Append(data)
 	this.sendMutex.Unlock()
 	this.sendSignal <- false
@@ -97,7 +101,7 @@ func (this *TcpTask) SendDataWithHead(head []byte, data []byte) {
 func (this *TcpTask) recvLoop() {
 	defer func() {
 		if err := recover(); err != nil {
-			log.Error.Println("err: ", err, "\n", string(debug.Stack()))
+			log.Error.Println("err:", err, "\n", string(debug.Stack()))
 		}
 	}()
 
@@ -123,16 +127,16 @@ func (this *TcpTask) recvLoop() {
 			}
 			readNum, err = io.ReadAtLeast(this.Conn, recvBuff.WrBuf(), needNum)
 			if err != nil {
-				log.Error.Println("recv loop addr: ", this.Conn.RemoteAddr(), ", err: ", err)
+				log.Error.Println("recv loop addr:", this.Conn.RemoteAddr(), ", err:", err)
 				return
 			}
 			recvBuff.RdFlip(readNum)
 			totalSize = recvBuff.RdSize()
 		}
 		msgBuff = recvBuff.RdBuf()
-		dataSize = util.BytesToInt(msgBuff[:cmdDataHeadSize])
+		dataSize = int(util.BytesToUint32(msgBuff[:cmdDataHeadSize]))
 		if dataSize > sendDataMaxSize {
-			log.Error.Println("recv too big data over limit size: ", dataSize)
+			log.Error.Println("recv too big data over limit size:", dataSize)
 			return
 		}
 		if totalSize < cmdDataHeadSize + dataSize {
@@ -142,7 +146,7 @@ func (this *TcpTask) recvLoop() {
 			}
 			readNum, err = io.ReadAtLeast(this.Conn, recvBuff.WrBuf(), needNum)
 			if err != nil {
-				log.Error.Println("recv loop addr: ", this.Conn.RemoteAddr(), ", err: ", err)
+				log.Error.Println("recv loop addr:", this.Conn.RemoteAddr(), ", err:", err)
 				return
 			}
 			recvBuff.WrFlip(readNum)
@@ -184,7 +188,7 @@ func (this *TcpTask) sendLoop() {
 			}
 			sendNum, err = this.Conn.Write(tmpByte.RdBuf()[:tmpByte.RdSize()])
 			if err != nil {
-				log.Error.Println("send loop addr: ", this.Conn.RemoteAddr(), ", err: ", err)
+				log.Error.Println("send loop addr:", this.Conn.RemoteAddr(), ", err:", err)
 				return
 			}
 			tmpByte.RdFlip(sendNum)

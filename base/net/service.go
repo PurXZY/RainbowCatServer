@@ -21,6 +21,10 @@ type Service struct {
 	terminate   bool
 }
 
+func NewService() *Service {
+	return &Service{Server: &TcpServer{}}
+}
+
 func (this *Service) SetUserService (service IService) {
 	this.userService = service
 }
