@@ -117,21 +117,21 @@ func (this *TcpTask) recvLoop() {
 		msgBuff []byte
 
 	)
-
+	recvBuff.WrGrow(cmdDataHeadSize)
 	for {
 		totalSize = recvBuff.RdSize()
 		if totalSize < cmdDataHeadSize {
 			needNum = cmdDataHeadSize - totalSize
-			if recvBuff.WrSize() < needNum {
-				recvBuff.WrGrow(needNum)
-			}
+			// log.Debug.Println("recv head needNum:", needNum)
+
 			readNum, err = io.ReadAtLeast(this.Conn, recvBuff.WrBuf(), needNum)
 			if err != nil {
 				log.Error.Println("recv loop addr:", this.Conn.RemoteAddr(), ", err:", err)
 				return
 			}
-			recvBuff.RdFlip(readNum)
+			recvBuff.WrFlip(readNum)
 			totalSize = recvBuff.RdSize()
+			// log.Debug.Println("recv head readNum:", readNum, " totalSize:", totalSize)
 		}
 		msgBuff = recvBuff.RdBuf()
 		dataSize = int(util.BytesToUint32(msgBuff[:cmdDataHeadSize]))
@@ -144,11 +144,13 @@ func (this *TcpTask) recvLoop() {
 			if recvBuff.WrSize() < needNum {
 				recvBuff.WrGrow(needNum)
 			}
+			// log.Debug.Println("recv body needNum:", needNum)
 			readNum, err = io.ReadAtLeast(this.Conn, recvBuff.WrBuf(), needNum)
 			if err != nil {
 				log.Error.Println("recv loop addr:", this.Conn.RemoteAddr(), ", err:", err)
 				return
 			}
+			// log.Debug.Println("recv body readNum:", readNum, " totalSize:", totalSize)
 			recvBuff.WrFlip(readNum)
 			msgBuff = recvBuff.RdBuf()
 		}
