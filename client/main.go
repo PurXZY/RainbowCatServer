@@ -2,11 +2,12 @@ package main
 
 import (
 	"base/log"
+	"base/net"
 	"base/util"
 	"client/userclient"
-	"math/rand"
 	"os"
 	"time"
+	"usercmd"
 )
 
 func main() {
@@ -24,14 +25,20 @@ func main() {
 	for {
 		select {
 			case <- c:
-				randomValue := rand.Int31()
-				sendData := util.Uint32ToBytes(uint32(randomValue))
-				cli.GetTcpTask().SendData(sendData)
-				log.Debug.Println("send data:", sendData, "value:", randomValue)
+				SendProtoData(cli.GetTcpTask())
 			case <- out:
 				break Loop
 		}
 	}
-	time.Sleep(3 * time.Second)
+	time.Sleep(1 * time.Second)
+	cli.CloseConnection()
 	log.Info.Println("client all over")
+}
+
+func SendProtoData(task net.ITcpTask) {
+	msg := usercmd.LoginC2SMsg{
+		Name:"xzy",
+	}
+	data, _ := util.EncodeCmd(usercmd.UserCmd_LoginReq, &msg)
+	task.SendData(data)
 }

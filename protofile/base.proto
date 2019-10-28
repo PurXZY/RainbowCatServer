@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package usercmd;
+
+enum UserCmd {
+	LoginReq = 0;
+	LoginRes = 1;
+}
+
+message LoginC2SMsg{
+	string name = 1;
+}
+
+message LoginS2CMsg{
+	uint32 playerId = 1;
+}

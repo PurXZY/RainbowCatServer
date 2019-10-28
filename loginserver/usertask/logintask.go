@@ -5,6 +5,7 @@ import (
 	"base/net"
 	"base/util"
 	engineNet "net"
+	"usercmd"
 )
 
 type LoginTask struct {
@@ -20,8 +21,19 @@ func NewLoginTask(conn engineNet.Conn) *LoginTask {
 }
 
 func (this *LoginTask) ParseMsg(data []byte) bool {
-	value := util.BytesToUint32(data)
-	log.Debug.Println("addr:", this.Conn.RemoteAddr(), " recv data:", data, "value:", value)
+	cmdType := usercmd.UserCmd(util.GetCmdType(data))
+	switch cmdType {
+	case usercmd.UserCmd_LoginReq:
+		recvCmd, ok := util.DecodeCmd(data, &usercmd.LoginC2SMsg{}).(*usercmd.LoginC2SMsg)
+		if !ok {
+			log.Error.Println("decode cmd fail cmdType:",cmdType)
+			return false
+		}
+		log.Debug.Println("recv msg UserCmd_LoginReq name:", recvCmd.GetName())
+	default:
+		log.Error.Println("unknown cmdType:", cmdType)
+		return false
+	}
 	return true
 }
 

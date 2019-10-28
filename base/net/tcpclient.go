@@ -44,3 +44,7 @@ func (this *TcpClient) SetTcpTask(task ITcpTask) {
 func (this *TcpClient) GetTcpTask() ITcpTask {
 	return this.userTask
 }
+
+func (this *TcpClient) CloseConnection() {
+	this.userTask.Close()
+}

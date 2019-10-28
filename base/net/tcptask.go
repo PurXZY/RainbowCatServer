@@ -21,6 +21,7 @@ type ITcpTask interface {
 	SendDataWithHead(head []byte, data []byte)
 	ParseMsg(data []byte) bool
 	OnClose()
+	Close()
 }
 
 type TcpTask struct {
@@ -117,16 +118,19 @@ func (this *TcpTask) recvLoop() {
 		msgBuff []byte
 
 	)
-	recvBuff.WrGrow(cmdDataHeadSize)
+
 	for {
 		totalSize = recvBuff.RdSize()
-		if totalSize < cmdDataHeadSize {
+		for totalSize < cmdDataHeadSize {
 			needNum = cmdDataHeadSize - totalSize
 			// log.Debug.Println("recv head needNum:", needNum)
-
-			readNum, err = io.ReadAtLeast(this.Conn, recvBuff.WrBuf(), needNum)
-			if err != nil {
-				log.Error.Println("recv loop addr:", this.Conn.RemoteAddr(), ", err:", err)
+			readNum, err = this.Conn.Read(recvBuff.WrBuf())
+			// readNum, err = io.ReadAtLeast(this.Conn, recvBuff.WrBuf(), needNum)
+			if err == io.EOF{
+				log.Debug.Println("remote close io eof addr:", this.Conn.RemoteAddr())
+				return
+			} else if err != nil {
+				log.Error.Printf("recv loop addr:%s, err:%T %+v", this.Conn.RemoteAddr(), err, err)
 				return
 			}
 			recvBuff.WrFlip(readNum)
@@ -139,22 +143,22 @@ func (this *TcpTask) recvLoop() {
 			log.Error.Println("recv too big data over limit size:", dataSize)
 			return
 		}
-		if totalSize < cmdDataHeadSize + dataSize {
+		for totalSize < cmdDataHeadSize + dataSize {
 			needNum = cmdDataHeadSize + dataSize - totalSize
 			if recvBuff.WrSize() < needNum {
 				recvBuff.WrGrow(needNum)
 			}
 			// log.Debug.Println("recv body needNum:", needNum)
-			readNum, err = io.ReadAtLeast(this.Conn, recvBuff.WrBuf(), needNum)
+			readNum, err = this.Conn.Read(recvBuff.WrBuf())
+			// readNum, err = io.ReadAtLeast(this.Conn, recvBuff.WrBuf(), needNum)
 			if err != nil {
 				log.Error.Println("recv loop addr:", this.Conn.RemoteAddr(), ", err:", err)
 				return
 			}
 			// log.Debug.Println("recv body readNum:", readNum, " totalSize:", totalSize)
 			recvBuff.WrFlip(readNum)
-			msgBuff = recvBuff.RdBuf()
 		}
-
+		msgBuff = recvBuff.RdBuf()
 		this.userTcpTask.ParseMsg(msgBuff[cmdDataHeadSize:cmdDataHeadSize+dataSize])
 		recvBuff.RdFlip(cmdDataHeadSize + dataSize)
 	}
@@ -181,19 +185,23 @@ func (this *TcpTask) sendLoop() {
 		} else {
 			this.sendMutex.Lock()
 			if this.sendBuff.RdReady() {
+				// 发送数据由发送缓冲区移动到发送协程中
 				tmpByte.Append(this.sendBuff.RdBuf()[:this.sendBuff.RdSize()])
 				this.sendBuff.Reset()
 			}
 			this.sendMutex.Unlock()
 			if !tmpByte.RdReady() {
-				break
+				continue
 			}
-			sendNum, err = this.Conn.Write(tmpByte.RdBuf()[:tmpByte.RdSize()])
-			if err != nil {
-				log.Error.Println("send loop addr:", this.Conn.RemoteAddr(), ", err:", err)
-				return
+			for tmpByte.RdReady() {
+				// 发送完整
+				sendNum, err = this.Conn.Write(tmpByte.RdBuf()[:tmpByte.RdSize()])
+				if err != nil {
+					log.Error.Println("send loop addr:", this.Conn.RemoteAddr(), ", err:", err)
+					return
+				}
+				tmpByte.RdFlip(sendNum)
 			}
-			tmpByte.RdFlip(sendNum)
 		}
 	}
 }
