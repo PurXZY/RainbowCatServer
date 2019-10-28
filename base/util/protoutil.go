@@ -20,7 +20,7 @@ func GetCmdType(buf []byte) uint16 {
 	if len(buf) < CmdHeaderSize {
 		return 0
 	}
-	return uint16(buf[0]) | uint16(buf[1])<<8
+	return uint16(buf[1]) | uint16(buf[0])<<8
 }
 
 // 生成二进制数据,返回数据和标识
@@ -39,10 +39,9 @@ func DecodeCmd(buf []byte, pb proto.Message) proto.Message {
 	if len(buf) < CmdHeaderSize {
 		return nil
 	}
-	var mbuff []byte
-	mbuff = buf[CmdHeaderSize:]
-
-	err := proto.Unmarshal(mbuff, pb)
+	var tmpBuff []byte
+	tmpBuff = buf[CmdHeaderSize:]
+	err := proto.Unmarshal(tmpBuff, pb)
 	if err != nil {
 		return nil
 	}

@@ -17,6 +17,8 @@ const (
 )
 
 type ITcpTask interface {
+	SetId(id uint32)
+	GetId() uint32
 	SendData(data []byte)
 	SendDataWithHead(head []byte, data []byte)
 	ParseMsg(data []byte) bool

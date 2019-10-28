@@ -4,6 +4,7 @@ import (
 	"base/log"
 	"base/net"
 	"loginserver/usertask"
+	"loginserver/usertaskmgr"
 	"math/rand"
 	"time"
 )
@@ -39,7 +40,10 @@ func (this *LoginServer) MainLoop() {
 		return
 	}
 	loginTask := usertask.NewLoginTask(conn)
-	loginTask.Start()
+	ok := usertaskmgr.GetMe().AddNewPlayerTask(loginTask)
+	if ok {
+		loginTask.Start()
+	}
 }
 
 func (this *LoginServer) Final() {
