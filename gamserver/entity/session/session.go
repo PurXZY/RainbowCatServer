@@ -13,7 +13,7 @@ import (
 type Session struct {
 	net.TcpTask
 	sessionId uint32
-	owner i.ISessionOwner
+	owner     i.ISessionOwner
 }
 
 func NewSession(conn engineNet.Conn, sessionId uint32) *Session {
@@ -32,6 +32,7 @@ func (this *Session) SetOwner(owner i.ISessionOwner) {
 
 func (this *Session) ParseMsg(data []byte) bool {
 	cmdType := usercmd.UserCmd(util.GetCmdType(data))
+	log.Debug.Println("ParseMsg cmdType:", cmdType)
 	switch cmdType {
 	case usercmd.UserCmd_LoginReq:
 		recvCmd, ok := util.DecodeCmd(data, &usercmd.LoginC2SMsg{}).(*usercmd.LoginC2SMsg)
@@ -40,28 +41,21 @@ func (this *Session) ParseMsg(data []byte) bool {
 			return false
 		}
 		log.Debug.Println("recv msg UserCmd_LoginReq name:", recvCmd.GetName())
-		this.sendLoginRes()
+		msg := usercmd.LoginS2CMsg{
+			PlayerId: this.sessionId,
+		}
+		data, err := util.EncodeCmd(usercmd.UserCmd_LoginRes, &msg)
+		if err != nil {
+			return false
+		}
+		this.SendData(data)
 		avatarmgr.GetMe().AddNewAvatar(this, recvCmd.GetName())
-	case usercmd.UserCmd_IntoRoomReq:
-		this.owner.ReqIntoRoom()
 	default:
-		log.Error.Println("unknown cmdType:", cmdType)
-		return false
+		this.owner.OnRecvMsg(cmdType, data)
 	}
 	return true
 }
 
 func (this *Session) OnClose() {
 
-}
-
-func (this *Session) sendLoginRes() {
-	msg := usercmd.LoginS2CMsg{
-		PlayerId: this.sessionId,
-	}
-	data, err := util.EncodeCmd(usercmd.UserCmd_LoginRes, &msg)
-	if err != nil {
-		return
-	}
-	this.SendData(data)
 }

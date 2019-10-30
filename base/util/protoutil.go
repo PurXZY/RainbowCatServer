@@ -1,6 +1,7 @@
 package util
 
 import (
+	"base/log"
 	"encoding/binary"
 	"github.com/golang/protobuf/proto"
 	"usercmd"
@@ -27,6 +28,7 @@ func GetCmdType(buf []byte) uint16 {
 func EncodeCmd(cmd usercmd.UserCmd, msg proto.Message) ([]byte, error) {
 	data, err := proto.Marshal(msg)
 	if err != nil {
+		log.Error.Println("EncodeCmd fail cmd:", cmd)
 		return nil, err
 	}
 	p := make([]byte, len(data)+CmdHeaderSize)

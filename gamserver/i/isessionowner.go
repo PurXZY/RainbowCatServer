@@ -1,5 +1,7 @@
 package i
 
+import "usercmd"
+
 type IOwner interface {
 	SendData(data []byte)
 }
@@ -7,5 +9,5 @@ type IOwner interface {
 type ISessionOwner interface {
 	IOwner
 	GetName() string
-	ReqIntoRoom()
+	OnRecvMsg(usercmd.UserCmd, []byte)
 }

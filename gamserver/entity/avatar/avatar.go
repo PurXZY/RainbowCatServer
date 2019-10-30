@@ -3,11 +3,12 @@ package avatar
 import (
 	"fmt"
 	"gamserver/i"
-	"gamserver/mgr/turnroommgr"
 	"strconv"
+	"usercmd"
 )
 
 type Avatar struct {
+	AvatarNetMsgDispatcher
 	uniqId  uint32
 	session i.ISession
 	name    string
@@ -20,11 +21,12 @@ func NewAvatar(id uint32, session i.ISession, name string) *Avatar {
 		name:    name,
 	}
 	session.SetOwner(avatar)
+	avatar.Init(avatar)
 	return avatar
 }
 
-func (this *Avatar) ReqIntoRoom() {
-	turnroommgr.GetMe().AddNewTurnRoom(this)
+func (this *Avatar) OnRecvMsg(cmd usercmd.UserCmd, data []byte) {
+	this.dispatcher.Call(cmd, data)
 }
 
 func (this *Avatar) GetName() string {

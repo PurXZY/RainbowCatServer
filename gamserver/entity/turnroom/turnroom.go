@@ -27,7 +27,7 @@ func (this *TurnRoom) Init() {
 	}
 	sendData, err := util.EncodeCmd(usercmd.UserCmd_IntoRoomRes, &msg)
 	if err != nil {
-
+		return
 	}
 	this.owner.SendData(sendData)
 }
