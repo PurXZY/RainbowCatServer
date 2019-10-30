@@ -5,6 +5,9 @@ package usercmd;
 enum UserCmd {
 	LoginReq = 0;
 	LoginRes = 1;
+	IntoRoomReq = 2;
+	IntoRoomRes = 3;
+	MaxCmdId = 4;
 }
 
 message LoginC2SMsg{
@@ -13,4 +16,12 @@ message LoginC2SMsg{
 
 message LoginS2CMsg{
 	uint32 playerId = 1;
+}
+
+message IntoRoomC2SMsg{
+
+}
+
+message IntoRoomS2cMsg{
+	uint32 RoomId = 1;
 }

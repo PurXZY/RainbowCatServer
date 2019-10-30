@@ -4,6 +4,7 @@ import (
 	"base/log"
 	"base/util"
 	"bytes"
+	"gamserver/i"
 	"io"
 	"net"
 	"runtime/debug"
@@ -16,18 +17,8 @@ const (
 	cmdDataHeadSize = 4
 )
 
-type ITcpTask interface {
-	SetId(id uint32)
-	GetId() uint32
-	SendData(data []byte)
-	SendDataWithHead(head []byte, data []byte)
-	ParseMsg(data []byte) bool
-	OnClose()
-	Close()
-}
-
 type TcpTask struct {
-	userTcpTask ITcpTask
+	userTcpTask i.ISession
 	isClosed int32
 	Conn net.Conn
 	sendBuff *ByteBuffer
@@ -44,7 +35,7 @@ func NewTcpTask(conn net.Conn) *TcpTask {
 	}
 }
 
-func (this *TcpTask) SetUserTask (userTcpTask ITcpTask) {
+func (this *TcpTask) SetSession (userTcpTask i.ISession) {
 	this.userTcpTask = userTcpTask
 }
 

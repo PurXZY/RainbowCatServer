@@ -2,13 +2,13 @@ package main
 
 import (
 	"base/log"
-	"loginserver/userservice"
+	"gamserver"
 	"os"
 )
 
 func main() {
 	log.InitLog(os.Stdout, os.Stdout, os.Stdout)
-	ser := userservice.NewLoginServer()
+	ser := gamserver.NewGameServer()
 	ser.Start()
 	log.Info.Println("server all over")
 }
