@@ -9,10 +9,10 @@ import (
 
 type TurnRoom struct {
 	uniqId uint32
-	owner  i.ISessionOwner
+	owner  i.IRoomOwner
 }
 
-func NewTurnRoom(uniqId uint32, owner i.ISessionOwner) *TurnRoom {
+func NewTurnRoom(uniqId uint32, owner i.IRoomOwner) *TurnRoom {
 	room := &TurnRoom{
 		uniqId: uniqId,
 		owner:  owner,

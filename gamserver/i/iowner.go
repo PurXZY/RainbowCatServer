@@ -11,3 +11,8 @@ type ISessionOwner interface {
 	GetName() string
 	OnRecvMsg(usercmd.UserCmd, []byte)
 }
+
+type IRoomOwner interface {
+	IOwner
+	GetName() string
+}
