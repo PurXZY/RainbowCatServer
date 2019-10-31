@@ -1,0 +1,26 @@
+{
+  "1": {
+    "Health": 8,
+    "PhysicalAttack": 5,
+    "MagicAttack": 3,
+    "PhysicalDefend": 5,
+    "MagicDefend": 3,
+    "MoveSpeed":  2
+  },
+  "2": {
+    "Health": 8,
+    "PhysicalAttack": 5,
+    "MagicAttack": 3,
+    "PhysicalDefend": 5,
+    "MagicDefend": 3,
+    "MoveSpeed":  3
+  },
+  "3": {
+    "Health": 8,
+    "PhysicalAttack": 5,
+    "MagicAttack": 3,
+    "PhysicalDefend": 5,
+    "MagicDefend": 3,
+    "MoveSpeed":  1
+  }
+}

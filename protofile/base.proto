@@ -8,7 +8,8 @@ enum UserCmd {
 	IntoRoomReq = 2;
 	IntoRoomRes = 3;
 	CreateAllBattleEntities = 4;
-	MaxCmdId = 5;
+	TurnInfo = 5;
+	MaxCmdId = 6;
 }
 
 enum PosIndex {
@@ -39,8 +40,20 @@ message IntoRoomS2cMsg{
 message BattleEntity{
 	uint32 PosIndex = 1;
 	uint32 EntityType = 2;
+	uint32 Health = 3;
+	uint32 PhysicalAttack = 4;
+    uint32 MagicAttack = 5;
+    uint32 PhysicalDefend = 6;
+    uint32 MagicDefend = 7;
+    uint32 MoveSpeed = 8;
 }
 
 message CreateAllBattleEntitiesS2CMsg{
 	repeated BattleEntity entities = 1;
+}
+
+message TurnInfoS2CMsg{
+    uint32 BigTurnIndex = 1;
+    uint32 SmallTurnIndex = 2;
+    uint32 CurEntityPosIndex = 3;
 }

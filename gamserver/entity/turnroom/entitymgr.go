@@ -9,12 +9,12 @@ import (
 
 type EntityMgr struct {
 	turnRoom       i.ITurnRoom
-	battleEntities map[usercmd.PosIndex]*battleentity.BattleEntity
+	battleEntities map[uint32]*battleentity.BattleEntity
 }
 
 func NewEntityMgr() *EntityMgr {
 	eMgr := &EntityMgr{
-		battleEntities: make(map[usercmd.PosIndex]*battleentity.BattleEntity),
+		battleEntities: make(map[uint32]*battleentity.BattleEntity),
 	}
 	return eMgr
 }
@@ -32,26 +32,23 @@ func (this *EntityMgr) initBattleEntities() {
 		usercmd.PosIndex_PosERight:  2,
 	}
 	for posIndex, entityType := range enemyData {
-		entity := battleentity.NewBattleEntity(posIndex, entityType)
-		this.battleEntities[posIndex] = entity
+		entity := battleentity.NewBattleEntity(uint32(posIndex), entityType)
+		this.battleEntities[uint32(posIndex)] = entity
 	}
 
 	myData := map[usercmd.PosIndex]uint32{
 		usercmd.PosIndex_PosBCenter: 3,
 	}
 	for posIndex, entityType := range myData {
-		entity := battleentity.NewBattleEntity(posIndex, entityType)
-		this.battleEntities[posIndex] = entity
+		entity := battleentity.NewBattleEntity(uint32(posIndex), entityType)
+		this.battleEntities[uint32(posIndex)] = entity
 	}
 }
 
 func (this *EntityMgr) notifyClientAllBattleEntities() {
 	msg := usercmd.CreateAllBattleEntitiesS2CMsg{}
-	for posIndex, entity := range this.battleEntities {
-		msg.Entities = append(msg.Entities, &usercmd.BattleEntity{
-			PosIndex:   uint32(posIndex),
-			EntityType: entity.GetType(),
-		})
+	for _, entity := range this.battleEntities {
+		msg.Entities = append(msg.Entities, entity.Prop.GetPropData())
 	}
 	data, err := util.EncodeCmd(usercmd.UserCmd_CreateAllBattleEntities, &msg)
 	if err != nil {
@@ -68,8 +65,8 @@ func (this *EntityMgr) GetAllBattleEntities() []*battleentity.BattleEntity {
 	return v
 }
 
-func (this *EntityMgr) GetAllEntitiesSpeed() map[usercmd.PosIndex]uint32 {
-	v := make(map[usercmd.PosIndex]uint32, len(this.battleEntities))
+func (this *EntityMgr) GetAllEntitiesSpeed() map[uint32]uint32 {
+	v := make(map[uint32]uint32, len(this.battleEntities))
 	for key, value := range this.battleEntities {
 		v[key] = value.Prop.MoveSpeed
 	}

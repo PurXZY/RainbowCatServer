@@ -3,6 +3,7 @@ package gamserver
 import (
 	"base/log"
 	"base/net"
+	"gamserver/mgr/datamgr"
 	"gamserver/mgr/sessionmgr"
 	"math/rand"
 	"os"
@@ -80,6 +81,7 @@ func (this *GameServer) Init() bool {
 		return false
 	}
 	log.Info.Println("init server success")
+	datamgr.GetMe()
 	return true
 }
 

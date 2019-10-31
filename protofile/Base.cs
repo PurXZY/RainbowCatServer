@@ -27,14 +27,20 @@ namespace Usercmd {
             "CgpiYXNlLnByb3RvEgd1c2VyY21kIhsKC0xvZ2luQzJTTXNnEgwKBG5hbWUY",
             "ASABKAkiHwoLTG9naW5TMkNNc2cSEAoIcGxheWVySWQYASABKA0iEAoOSW50",
             "b1Jvb21DMlNNc2ciIAoOSW50b1Jvb21TMmNNc2cSDgoGUm9vbUlkGAEgASgN",
-            "IjQKDEJhdHRsZUVudGl0eRIQCghQb3NJbmRleBgBIAEoDRISCgpFbnRpdHlU",
-            "eXBlGAIgASgNIkgKHUNyZWF0ZUFsbEJhdHRsZUVudGl0aWVzUzJDTXNnEicK",
-            "CGVudGl0aWVzGAEgAygLMhUudXNlcmNtZC5CYXR0bGVFbnRpdHkqcgoHVXNl",
-            "ckNtZBIMCghMb2dpblJlcRAAEgwKCExvZ2luUmVzEAESDwoLSW50b1Jvb21S",
-            "ZXEQAhIPCgtJbnRvUm9vbVJlcxADEhsKF0NyZWF0ZUFsbEJhdHRsZUVudGl0",
-            "aWVzEAQSDAoITWF4Q21kSWQQBSpkCghQb3NJbmRleBIMCghQb3NFTGVmdBAA",
-            "Eg4KClBvc0VDZW50ZXIQARINCglQb3NFUmlnaHQQAhIMCghQb3NCTGVmdBAD",
-            "Eg4KClBvc0JDZW50ZXIQBBINCglQb3NCUmlnaHQQBWIGcHJvdG8z"));
+            "IrEBCgxCYXR0bGVFbnRpdHkSEAoIUG9zSW5kZXgYASABKA0SEgoKRW50aXR5",
+            "VHlwZRgCIAEoDRIOCgZIZWFsdGgYAyABKA0SFgoOUGh5c2ljYWxBdHRhY2sY",
+            "BCABKA0SEwoLTWFnaWNBdHRhY2sYBSABKA0SFgoOUGh5c2ljYWxEZWZlbmQY",
+            "BiABKA0SEwoLTWFnaWNEZWZlbmQYByABKA0SEQoJTW92ZVNwZWVkGAggASgN",
+            "IkgKHUNyZWF0ZUFsbEJhdHRsZUVudGl0aWVzUzJDTXNnEicKCGVudGl0aWVz",
+            "GAEgAygLMhUudXNlcmNtZC5CYXR0bGVFbnRpdHkiWQoOVHVybkluZm9TMkNN",
+            "c2cSFAoMQmlnVHVybkluZGV4GAEgASgNEhYKDlNtYWxsVHVybkluZGV4GAIg",
+            "ASgNEhkKEUN1ckVudGl0eVBvc0luZGV4GAMgASgNKoABCgdVc2VyQ21kEgwK",
+            "CExvZ2luUmVxEAASDAoITG9naW5SZXMQARIPCgtJbnRvUm9vbVJlcRACEg8K",
+            "C0ludG9Sb29tUmVzEAMSGwoXQ3JlYXRlQWxsQmF0dGxlRW50aXRpZXMQBBIM",
+            "CghUdXJuSW5mbxAFEgwKCE1heENtZElkEAYqZAoIUG9zSW5kZXgSDAoIUG9z",
+            "RUxlZnQQABIOCgpQb3NFQ2VudGVyEAESDQoJUG9zRVJpZ2h0EAISDAoIUG9z",
+            "QkxlZnQQAxIOCgpQb3NCQ2VudGVyEAQSDQoJUG9zQlJpZ2h0EAViBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Usercmd.UserCmd), typeof(global::Usercmd.PosIndex), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -42,8 +48,9 @@ namespace Usercmd {
             new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.LoginS2CMsg), global::Usercmd.LoginS2CMsg.Parser, new[]{ "PlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.IntoRoomC2SMsg), global::Usercmd.IntoRoomC2SMsg.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.IntoRoomS2cMsg), global::Usercmd.IntoRoomS2cMsg.Parser, new[]{ "RoomId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.BattleEntity), global::Usercmd.BattleEntity.Parser, new[]{ "PosIndex", "EntityType" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.CreateAllBattleEntitiesS2CMsg), global::Usercmd.CreateAllBattleEntitiesS2CMsg.Parser, new[]{ "Entities" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.BattleEntity), global::Usercmd.BattleEntity.Parser, new[]{ "PosIndex", "EntityType", "Health", "PhysicalAttack", "MagicAttack", "PhysicalDefend", "MagicDefend", "MoveSpeed" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.CreateAllBattleEntitiesS2CMsg), global::Usercmd.CreateAllBattleEntitiesS2CMsg.Parser, new[]{ "Entities" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.TurnInfoS2CMsg), global::Usercmd.TurnInfoS2CMsg.Parser, new[]{ "BigTurnIndex", "SmallTurnIndex", "CurEntityPosIndex" }, null, null, null, null)
           }));
     }
     #endregion
@@ -56,7 +63,8 @@ namespace Usercmd {
     [pbr::OriginalName("IntoRoomReq")] IntoRoomReq = 2,
     [pbr::OriginalName("IntoRoomRes")] IntoRoomRes = 3,
     [pbr::OriginalName("CreateAllBattleEntities")] CreateAllBattleEntities = 4,
-    [pbr::OriginalName("MaxCmdId")] MaxCmdId = 5,
+    [pbr::OriginalName("TurnInfo")] TurnInfo = 5,
+    [pbr::OriginalName("MaxCmdId")] MaxCmdId = 6,
   }
 
   public enum PosIndex {
@@ -586,6 +594,12 @@ namespace Usercmd {
     public BattleEntity(BattleEntity other) : this() {
       posIndex_ = other.posIndex_;
       entityType_ = other.entityType_;
+      health_ = other.health_;
+      physicalAttack_ = other.physicalAttack_;
+      magicAttack_ = other.magicAttack_;
+      physicalDefend_ = other.physicalDefend_;
+      magicDefend_ = other.magicDefend_;
+      moveSpeed_ = other.moveSpeed_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -616,6 +630,72 @@ namespace Usercmd {
       }
     }
 
+    /// <summary>Field number for the "Health" field.</summary>
+    public const int HealthFieldNumber = 3;
+    private uint health_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint Health {
+      get { return health_; }
+      set {
+        health_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "PhysicalAttack" field.</summary>
+    public const int PhysicalAttackFieldNumber = 4;
+    private uint physicalAttack_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint PhysicalAttack {
+      get { return physicalAttack_; }
+      set {
+        physicalAttack_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "MagicAttack" field.</summary>
+    public const int MagicAttackFieldNumber = 5;
+    private uint magicAttack_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint MagicAttack {
+      get { return magicAttack_; }
+      set {
+        magicAttack_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "PhysicalDefend" field.</summary>
+    public const int PhysicalDefendFieldNumber = 6;
+    private uint physicalDefend_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint PhysicalDefend {
+      get { return physicalDefend_; }
+      set {
+        physicalDefend_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "MagicDefend" field.</summary>
+    public const int MagicDefendFieldNumber = 7;
+    private uint magicDefend_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint MagicDefend {
+      get { return magicDefend_; }
+      set {
+        magicDefend_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "MoveSpeed" field.</summary>
+    public const int MoveSpeedFieldNumber = 8;
+    private uint moveSpeed_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint MoveSpeed {
+      get { return moveSpeed_; }
+      set {
+        moveSpeed_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as BattleEntity);
@@ -631,6 +711,12 @@ namespace Usercmd {
       }
       if (PosIndex != other.PosIndex) return false;
       if (EntityType != other.EntityType) return false;
+      if (Health != other.Health) return false;
+      if (PhysicalAttack != other.PhysicalAttack) return false;
+      if (MagicAttack != other.MagicAttack) return false;
+      if (PhysicalDefend != other.PhysicalDefend) return false;
+      if (MagicDefend != other.MagicDefend) return false;
+      if (MoveSpeed != other.MoveSpeed) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -639,6 +725,12 @@ namespace Usercmd {
       int hash = 1;
       if (PosIndex != 0) hash ^= PosIndex.GetHashCode();
       if (EntityType != 0) hash ^= EntityType.GetHashCode();
+      if (Health != 0) hash ^= Health.GetHashCode();
+      if (PhysicalAttack != 0) hash ^= PhysicalAttack.GetHashCode();
+      if (MagicAttack != 0) hash ^= MagicAttack.GetHashCode();
+      if (PhysicalDefend != 0) hash ^= PhysicalDefend.GetHashCode();
+      if (MagicDefend != 0) hash ^= MagicDefend.GetHashCode();
+      if (MoveSpeed != 0) hash ^= MoveSpeed.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -660,6 +752,30 @@ namespace Usercmd {
         output.WriteRawTag(16);
         output.WriteUInt32(EntityType);
       }
+      if (Health != 0) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(Health);
+      }
+      if (PhysicalAttack != 0) {
+        output.WriteRawTag(32);
+        output.WriteUInt32(PhysicalAttack);
+      }
+      if (MagicAttack != 0) {
+        output.WriteRawTag(40);
+        output.WriteUInt32(MagicAttack);
+      }
+      if (PhysicalDefend != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(PhysicalDefend);
+      }
+      if (MagicDefend != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(MagicDefend);
+      }
+      if (MoveSpeed != 0) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(MoveSpeed);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -673,6 +789,24 @@ namespace Usercmd {
       }
       if (EntityType != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(EntityType);
+      }
+      if (Health != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Health);
+      }
+      if (PhysicalAttack != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PhysicalAttack);
+      }
+      if (MagicAttack != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MagicAttack);
+      }
+      if (PhysicalDefend != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PhysicalDefend);
+      }
+      if (MagicDefend != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MagicDefend);
+      }
+      if (MoveSpeed != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MoveSpeed);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -691,6 +825,24 @@ namespace Usercmd {
       if (other.EntityType != 0) {
         EntityType = other.EntityType;
       }
+      if (other.Health != 0) {
+        Health = other.Health;
+      }
+      if (other.PhysicalAttack != 0) {
+        PhysicalAttack = other.PhysicalAttack;
+      }
+      if (other.MagicAttack != 0) {
+        MagicAttack = other.MagicAttack;
+      }
+      if (other.PhysicalDefend != 0) {
+        PhysicalDefend = other.PhysicalDefend;
+      }
+      if (other.MagicDefend != 0) {
+        MagicDefend = other.MagicDefend;
+      }
+      if (other.MoveSpeed != 0) {
+        MoveSpeed = other.MoveSpeed;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -708,6 +860,30 @@ namespace Usercmd {
           }
           case 16: {
             EntityType = input.ReadUInt32();
+            break;
+          }
+          case 24: {
+            Health = input.ReadUInt32();
+            break;
+          }
+          case 32: {
+            PhysicalAttack = input.ReadUInt32();
+            break;
+          }
+          case 40: {
+            MagicAttack = input.ReadUInt32();
+            break;
+          }
+          case 48: {
+            PhysicalDefend = input.ReadUInt32();
+            break;
+          }
+          case 56: {
+            MagicDefend = input.ReadUInt32();
+            break;
+          }
+          case 64: {
+            MoveSpeed = input.ReadUInt32();
             break;
           }
         }
@@ -829,6 +1005,191 @@ namespace Usercmd {
             break;
           case 10: {
             entities_.AddEntriesFrom(input, _repeated_entities_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class TurnInfoS2CMsg : pb::IMessage<TurnInfoS2CMsg> {
+    private static readonly pb::MessageParser<TurnInfoS2CMsg> _parser = new pb::MessageParser<TurnInfoS2CMsg>(() => new TurnInfoS2CMsg());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<TurnInfoS2CMsg> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Usercmd.BaseReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TurnInfoS2CMsg() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TurnInfoS2CMsg(TurnInfoS2CMsg other) : this() {
+      bigTurnIndex_ = other.bigTurnIndex_;
+      smallTurnIndex_ = other.smallTurnIndex_;
+      curEntityPosIndex_ = other.curEntityPosIndex_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TurnInfoS2CMsg Clone() {
+      return new TurnInfoS2CMsg(this);
+    }
+
+    /// <summary>Field number for the "BigTurnIndex" field.</summary>
+    public const int BigTurnIndexFieldNumber = 1;
+    private uint bigTurnIndex_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint BigTurnIndex {
+      get { return bigTurnIndex_; }
+      set {
+        bigTurnIndex_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "SmallTurnIndex" field.</summary>
+    public const int SmallTurnIndexFieldNumber = 2;
+    private uint smallTurnIndex_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint SmallTurnIndex {
+      get { return smallTurnIndex_; }
+      set {
+        smallTurnIndex_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "CurEntityPosIndex" field.</summary>
+    public const int CurEntityPosIndexFieldNumber = 3;
+    private uint curEntityPosIndex_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint CurEntityPosIndex {
+      get { return curEntityPosIndex_; }
+      set {
+        curEntityPosIndex_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as TurnInfoS2CMsg);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(TurnInfoS2CMsg other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (BigTurnIndex != other.BigTurnIndex) return false;
+      if (SmallTurnIndex != other.SmallTurnIndex) return false;
+      if (CurEntityPosIndex != other.CurEntityPosIndex) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (BigTurnIndex != 0) hash ^= BigTurnIndex.GetHashCode();
+      if (SmallTurnIndex != 0) hash ^= SmallTurnIndex.GetHashCode();
+      if (CurEntityPosIndex != 0) hash ^= CurEntityPosIndex.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (BigTurnIndex != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(BigTurnIndex);
+      }
+      if (SmallTurnIndex != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(SmallTurnIndex);
+      }
+      if (CurEntityPosIndex != 0) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(CurEntityPosIndex);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (BigTurnIndex != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BigTurnIndex);
+      }
+      if (SmallTurnIndex != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SmallTurnIndex);
+      }
+      if (CurEntityPosIndex != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CurEntityPosIndex);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(TurnInfoS2CMsg other) {
+      if (other == null) {
+        return;
+      }
+      if (other.BigTurnIndex != 0) {
+        BigTurnIndex = other.BigTurnIndex;
+      }
+      if (other.SmallTurnIndex != 0) {
+        SmallTurnIndex = other.SmallTurnIndex;
+      }
+      if (other.CurEntityPosIndex != 0) {
+        CurEntityPosIndex = other.CurEntityPosIndex;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            BigTurnIndex = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            SmallTurnIndex = input.ReadUInt32();
+            break;
+          }
+          case 24: {
+            CurEntityPosIndex = input.ReadUInt32();
             break;
           }
         }

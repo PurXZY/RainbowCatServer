@@ -16,3 +16,8 @@ type IRoomOwner interface {
 	IOwner
 	GetName() string
 }
+
+type IBattleEntity interface {
+	GetPosIndex() uint32
+	GetType() uint32
+}

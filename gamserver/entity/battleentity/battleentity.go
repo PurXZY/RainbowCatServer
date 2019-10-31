@@ -1,23 +1,24 @@
 package battleentity
 
-import (
-	"usercmd"
-)
-
 type BattleEntity struct {
-	posIndex   usercmd.PosIndex
+	posIndex   uint32
 	entityType uint32
 	Prop       EntityProp
 }
 
-func NewBattleEntity(posIndex usercmd.PosIndex, entityType uint32) *BattleEntity {
+func NewBattleEntity(posIndex uint32, entityType uint32) *BattleEntity {
 	entity := &BattleEntity{
 		posIndex:   posIndex,
 		entityType: entityType,
 	}
+	entity.Prop.Init(entity, entityType)
 	return entity
 }
 
 func (this *BattleEntity) GetType() uint32 {
 	return this.entityType
+}
+
+func (this *BattleEntity) GetPosIndex() uint32 {
+	return this.posIndex
 }
