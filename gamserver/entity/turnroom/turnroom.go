@@ -8,20 +8,34 @@ import (
 )
 
 type TurnRoom struct {
+	EntityMgr
+	TurnLogic
 	uniqId uint32
 	owner  i.IRoomOwner
 }
 
 func NewTurnRoom(uniqId uint32, owner i.IRoomOwner) *TurnRoom {
 	room := &TurnRoom{
-		uniqId: uniqId,
-		owner:  owner,
+		EntityMgr: *NewEntityMgr(),
+		uniqId:    uniqId,
+		owner:     owner,
 	}
 	return room
 }
 
 func (this *TurnRoom) Init() {
 	log.Info.Printf("new TurnRoom id:%v, owner:%v", this.uniqId, this.owner.GetName())
+
+	this.notifyPlayerIntoRoom()
+	this.EntityMgr.Init(this)
+	this.TurnLogic.Init(this)
+}
+
+func (this *TurnRoom) BroadcastMsg(data []byte) {
+	this.owner.SendData(data)
+}
+
+func (this *TurnRoom) notifyPlayerIntoRoom() {
 	msg := usercmd.IntoRoomS2CMsg{
 		RoomId: this.uniqId,
 	}
@@ -29,5 +43,6 @@ func (this *TurnRoom) Init() {
 	if err != nil {
 		return
 	}
-	this.owner.SendData(sendData)
+	this.BroadcastMsg(sendData)
 }
+

@@ -27,16 +27,23 @@ namespace Usercmd {
             "CgpiYXNlLnByb3RvEgd1c2VyY21kIhsKC0xvZ2luQzJTTXNnEgwKBG5hbWUY",
             "ASABKAkiHwoLTG9naW5TMkNNc2cSEAoIcGxheWVySWQYASABKA0iEAoOSW50",
             "b1Jvb21DMlNNc2ciIAoOSW50b1Jvb21TMmNNc2cSDgoGUm9vbUlkGAEgASgN",
-            "KlUKB1VzZXJDbWQSDAoITG9naW5SZXEQABIMCghMb2dpblJlcxABEg8KC0lu",
-            "dG9Sb29tUmVxEAISDwoLSW50b1Jvb21SZXMQAxIMCghNYXhDbWRJZBAEYgZw",
-            "cm90bzM="));
+            "IjQKDEJhdHRsZUVudGl0eRIQCghQb3NJbmRleBgBIAEoDRISCgpFbnRpdHlU",
+            "eXBlGAIgASgNIkgKHUNyZWF0ZUFsbEJhdHRsZUVudGl0aWVzUzJDTXNnEicK",
+            "CGVudGl0aWVzGAEgAygLMhUudXNlcmNtZC5CYXR0bGVFbnRpdHkqcgoHVXNl",
+            "ckNtZBIMCghMb2dpblJlcRAAEgwKCExvZ2luUmVzEAESDwoLSW50b1Jvb21S",
+            "ZXEQAhIPCgtJbnRvUm9vbVJlcxADEhsKF0NyZWF0ZUFsbEJhdHRsZUVudGl0",
+            "aWVzEAQSDAoITWF4Q21kSWQQBSpkCghQb3NJbmRleBIMCghQb3NFTGVmdBAA",
+            "Eg4KClBvc0VDZW50ZXIQARINCglQb3NFUmlnaHQQAhIMCghQb3NCTGVmdBAD",
+            "Eg4KClBvc0JDZW50ZXIQBBINCglQb3NCUmlnaHQQBWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Usercmd.UserCmd), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Usercmd.UserCmd), typeof(global::Usercmd.PosIndex), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.LoginC2SMsg), global::Usercmd.LoginC2SMsg.Parser, new[]{ "Name" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.LoginS2CMsg), global::Usercmd.LoginS2CMsg.Parser, new[]{ "PlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.IntoRoomC2SMsg), global::Usercmd.IntoRoomC2SMsg.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.IntoRoomS2cMsg), global::Usercmd.IntoRoomS2cMsg.Parser, new[]{ "RoomId" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.IntoRoomS2cMsg), global::Usercmd.IntoRoomS2cMsg.Parser, new[]{ "RoomId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.BattleEntity), global::Usercmd.BattleEntity.Parser, new[]{ "PosIndex", "EntityType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.CreateAllBattleEntitiesS2CMsg), global::Usercmd.CreateAllBattleEntitiesS2CMsg.Parser, new[]{ "Entities" }, null, null, null, null)
           }));
     }
     #endregion
@@ -48,7 +55,17 @@ namespace Usercmd {
     [pbr::OriginalName("LoginRes")] LoginRes = 1,
     [pbr::OriginalName("IntoRoomReq")] IntoRoomReq = 2,
     [pbr::OriginalName("IntoRoomRes")] IntoRoomRes = 3,
-    [pbr::OriginalName("MaxCmdId")] MaxCmdId = 4,
+    [pbr::OriginalName("CreateAllBattleEntities")] CreateAllBattleEntities = 4,
+    [pbr::OriginalName("MaxCmdId")] MaxCmdId = 5,
+  }
+
+  public enum PosIndex {
+    [pbr::OriginalName("PosELeft")] PosEleft = 0,
+    [pbr::OriginalName("PosECenter")] PosEcenter = 1,
+    [pbr::OriginalName("PosERight")] PosEright = 2,
+    [pbr::OriginalName("PosBLeft")] PosBleft = 3,
+    [pbr::OriginalName("PosBCenter")] PosBcenter = 4,
+    [pbr::OriginalName("PosBRight")] PosBright = 5,
   }
 
   #endregion
@@ -534,6 +551,284 @@ namespace Usercmd {
             break;
           case 8: {
             RoomId = input.ReadUInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class BattleEntity : pb::IMessage<BattleEntity> {
+    private static readonly pb::MessageParser<BattleEntity> _parser = new pb::MessageParser<BattleEntity>(() => new BattleEntity());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<BattleEntity> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Usercmd.BaseReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BattleEntity() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BattleEntity(BattleEntity other) : this() {
+      posIndex_ = other.posIndex_;
+      entityType_ = other.entityType_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BattleEntity Clone() {
+      return new BattleEntity(this);
+    }
+
+    /// <summary>Field number for the "PosIndex" field.</summary>
+    public const int PosIndexFieldNumber = 1;
+    private uint posIndex_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint PosIndex {
+      get { return posIndex_; }
+      set {
+        posIndex_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "EntityType" field.</summary>
+    public const int EntityTypeFieldNumber = 2;
+    private uint entityType_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint EntityType {
+      get { return entityType_; }
+      set {
+        entityType_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as BattleEntity);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(BattleEntity other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (PosIndex != other.PosIndex) return false;
+      if (EntityType != other.EntityType) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (PosIndex != 0) hash ^= PosIndex.GetHashCode();
+      if (EntityType != 0) hash ^= EntityType.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (PosIndex != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(PosIndex);
+      }
+      if (EntityType != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(EntityType);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (PosIndex != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PosIndex);
+      }
+      if (EntityType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(EntityType);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(BattleEntity other) {
+      if (other == null) {
+        return;
+      }
+      if (other.PosIndex != 0) {
+        PosIndex = other.PosIndex;
+      }
+      if (other.EntityType != 0) {
+        EntityType = other.EntityType;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            PosIndex = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            EntityType = input.ReadUInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class CreateAllBattleEntitiesS2CMsg : pb::IMessage<CreateAllBattleEntitiesS2CMsg> {
+    private static readonly pb::MessageParser<CreateAllBattleEntitiesS2CMsg> _parser = new pb::MessageParser<CreateAllBattleEntitiesS2CMsg>(() => new CreateAllBattleEntitiesS2CMsg());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<CreateAllBattleEntitiesS2CMsg> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Usercmd.BaseReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CreateAllBattleEntitiesS2CMsg() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CreateAllBattleEntitiesS2CMsg(CreateAllBattleEntitiesS2CMsg other) : this() {
+      entities_ = other.entities_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CreateAllBattleEntitiesS2CMsg Clone() {
+      return new CreateAllBattleEntitiesS2CMsg(this);
+    }
+
+    /// <summary>Field number for the "entities" field.</summary>
+    public const int EntitiesFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Usercmd.BattleEntity> _repeated_entities_codec
+        = pb::FieldCodec.ForMessage(10, global::Usercmd.BattleEntity.Parser);
+    private readonly pbc::RepeatedField<global::Usercmd.BattleEntity> entities_ = new pbc::RepeatedField<global::Usercmd.BattleEntity>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Usercmd.BattleEntity> Entities {
+      get { return entities_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as CreateAllBattleEntitiesS2CMsg);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(CreateAllBattleEntitiesS2CMsg other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!entities_.Equals(other.entities_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= entities_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      entities_.WriteTo(output, _repeated_entities_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += entities_.CalculateSize(_repeated_entities_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(CreateAllBattleEntitiesS2CMsg other) {
+      if (other == null) {
+        return;
+      }
+      entities_.Add(other.entities_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            entities_.AddEntriesFrom(input, _repeated_entities_codec);
             break;
           }
         }

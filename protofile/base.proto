@@ -7,7 +7,17 @@ enum UserCmd {
 	LoginRes = 1;
 	IntoRoomReq = 2;
 	IntoRoomRes = 3;
-	MaxCmdId = 4;
+	CreateAllBattleEntities = 4;
+	MaxCmdId = 5;
+}
+
+enum PosIndex {
+	PosELeft = 0;
+	PosECenter = 1;
+	PosERight = 2;
+	PosBLeft = 3;
+	PosBCenter = 4;
+	PosBRight = 5;
 }
 
 message LoginC2SMsg{
@@ -24,4 +34,13 @@ message IntoRoomC2SMsg{
 
 message IntoRoomS2cMsg{
 	uint32 RoomId = 1;
+}
+
+message BattleEntity{
+	uint32 PosIndex = 1;
+	uint32 EntityType = 2;
+}
+
+message CreateAllBattleEntitiesS2CMsg{
+	repeated BattleEntity entities = 1;
 }
