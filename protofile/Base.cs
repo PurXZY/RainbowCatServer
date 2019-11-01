@@ -32,15 +32,18 @@ namespace Usercmd {
             "BCABKA0SEwoLTWFnaWNBdHRhY2sYBSABKA0SFgoOUGh5c2ljYWxEZWZlbmQY",
             "BiABKA0SEwoLTWFnaWNEZWZlbmQYByABKA0SEQoJTW92ZVNwZWVkGAggASgN",
             "IkgKHUNyZWF0ZUFsbEJhdHRsZUVudGl0aWVzUzJDTXNnEicKCGVudGl0aWVz",
-            "GAEgAygLMhUudXNlcmNtZC5CYXR0bGVFbnRpdHkiWQoOVHVybkluZm9TMkNN",
+            "GAEgAygLMhUudXNlcmNtZC5CYXR0bGVFbnRpdHkibwoOVHVybkluZm9TMkNN",
             "c2cSFAoMQmlnVHVybkluZGV4GAEgASgNEhYKDlNtYWxsVHVybkluZGV4GAIg",
-            "ASgNEhkKEUN1ckVudGl0eVBvc0luZGV4GAMgASgNKoABCgdVc2VyQ21kEgwK",
-            "CExvZ2luUmVxEAASDAoITG9naW5SZXMQARIPCgtJbnRvUm9vbVJlcRACEg8K",
-            "C0ludG9Sb29tUmVzEAMSGwoXQ3JlYXRlQWxsQmF0dGxlRW50aXRpZXMQBBIM",
-            "CghUdXJuSW5mbxAFEgwKCE1heENtZElkEAYqZAoIUG9zSW5kZXgSDAoIUG9z",
-            "RUxlZnQQABIOCgpQb3NFQ2VudGVyEAESDQoJUG9zRVJpZ2h0EAISDAoIUG9z",
-            "QkxlZnQQAxIOCgpQb3NCQ2VudGVyEAQSDQoJUG9zQlJpZ2h0EAViBnByb3Rv",
-            "Mw=="));
+            "ASgNEhkKEUN1ckVudGl0eVBvc0luZGV4GAMgASgNEhQKDE9wZXJhdGlvblNl",
+            "dBgEIAMoDSI9ChNDYXN0T3BlcmF0aW9uQzJTTXNnEhMKC09wZXJhdGlvbklk",
+            "GAEgASgNEhEKCVRhcmdldElkcxgCIAMoDSIXChVPcGVyYXRpb25SZXN1bHRT",
+            "MkNNc2cqrgEKB1VzZXJDbWQSDAoITG9naW5SZXEQABIMCghMb2dpblJlcxAB",
+            "Eg8KC0ludG9Sb29tUmVxEAISDwoLSW50b1Jvb21SZXMQAxIbChdDcmVhdGVB",
+            "bGxCYXR0bGVFbnRpdGllcxAEEgwKCFR1cm5JbmZvEAUSFAoQQ2FzdE9wZXJh",
+            "dGlvblJlcRAGEhYKEk9wZXJhdGlvblJlc3VsdFJlcxAHEgwKCE1heENtZElk",
+            "EAgqZAoIUG9zSW5kZXgSDAoIUG9zRUxlZnQQABIOCgpQb3NFQ2VudGVyEAES",
+            "DQoJUG9zRVJpZ2h0EAISDAoIUG9zQkxlZnQQAxIOCgpQb3NCQ2VudGVyEAQS",
+            "DQoJUG9zQlJpZ2h0EAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Usercmd.UserCmd), typeof(global::Usercmd.PosIndex), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -50,7 +53,9 @@ namespace Usercmd {
             new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.IntoRoomS2cMsg), global::Usercmd.IntoRoomS2cMsg.Parser, new[]{ "RoomId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.BattleEntity), global::Usercmd.BattleEntity.Parser, new[]{ "PosIndex", "EntityType", "Health", "PhysicalAttack", "MagicAttack", "PhysicalDefend", "MagicDefend", "MoveSpeed" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.CreateAllBattleEntitiesS2CMsg), global::Usercmd.CreateAllBattleEntitiesS2CMsg.Parser, new[]{ "Entities" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.TurnInfoS2CMsg), global::Usercmd.TurnInfoS2CMsg.Parser, new[]{ "BigTurnIndex", "SmallTurnIndex", "CurEntityPosIndex" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.TurnInfoS2CMsg), global::Usercmd.TurnInfoS2CMsg.Parser, new[]{ "BigTurnIndex", "SmallTurnIndex", "CurEntityPosIndex", "OperationSet" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.CastOperationC2SMsg), global::Usercmd.CastOperationC2SMsg.Parser, new[]{ "OperationId", "TargetIds" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Usercmd.OperationResultS2CMsg), global::Usercmd.OperationResultS2CMsg.Parser, null, null, null, null, null)
           }));
     }
     #endregion
@@ -64,7 +69,9 @@ namespace Usercmd {
     [pbr::OriginalName("IntoRoomRes")] IntoRoomRes = 3,
     [pbr::OriginalName("CreateAllBattleEntities")] CreateAllBattleEntities = 4,
     [pbr::OriginalName("TurnInfo")] TurnInfo = 5,
-    [pbr::OriginalName("MaxCmdId")] MaxCmdId = 6,
+    [pbr::OriginalName("CastOperationReq")] CastOperationReq = 6,
+    [pbr::OriginalName("OperationResultRes")] OperationResultRes = 7,
+    [pbr::OriginalName("MaxCmdId")] MaxCmdId = 8,
   }
 
   public enum PosIndex {
@@ -1041,6 +1048,7 @@ namespace Usercmd {
       bigTurnIndex_ = other.bigTurnIndex_;
       smallTurnIndex_ = other.smallTurnIndex_;
       curEntityPosIndex_ = other.curEntityPosIndex_;
+      operationSet_ = other.operationSet_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1082,6 +1090,16 @@ namespace Usercmd {
       }
     }
 
+    /// <summary>Field number for the "OperationSet" field.</summary>
+    public const int OperationSetFieldNumber = 4;
+    private static readonly pb::FieldCodec<uint> _repeated_operationSet_codec
+        = pb::FieldCodec.ForUInt32(34);
+    private readonly pbc::RepeatedField<uint> operationSet_ = new pbc::RepeatedField<uint>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<uint> OperationSet {
+      get { return operationSet_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as TurnInfoS2CMsg);
@@ -1098,6 +1116,7 @@ namespace Usercmd {
       if (BigTurnIndex != other.BigTurnIndex) return false;
       if (SmallTurnIndex != other.SmallTurnIndex) return false;
       if (CurEntityPosIndex != other.CurEntityPosIndex) return false;
+      if(!operationSet_.Equals(other.operationSet_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1107,6 +1126,7 @@ namespace Usercmd {
       if (BigTurnIndex != 0) hash ^= BigTurnIndex.GetHashCode();
       if (SmallTurnIndex != 0) hash ^= SmallTurnIndex.GetHashCode();
       if (CurEntityPosIndex != 0) hash ^= CurEntityPosIndex.GetHashCode();
+      hash ^= operationSet_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1132,6 +1152,7 @@ namespace Usercmd {
         output.WriteRawTag(24);
         output.WriteUInt32(CurEntityPosIndex);
       }
+      operationSet_.WriteTo(output, _repeated_operationSet_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1149,6 +1170,7 @@ namespace Usercmd {
       if (CurEntityPosIndex != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CurEntityPosIndex);
       }
+      size += operationSet_.CalculateSize(_repeated_operationSet_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1169,6 +1191,7 @@ namespace Usercmd {
       if (other.CurEntityPosIndex != 0) {
         CurEntityPosIndex = other.CurEntityPosIndex;
       }
+      operationSet_.Add(other.operationSet_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1192,6 +1215,262 @@ namespace Usercmd {
             CurEntityPosIndex = input.ReadUInt32();
             break;
           }
+          case 34:
+          case 32: {
+            operationSet_.AddEntriesFrom(input, _repeated_operationSet_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class CastOperationC2SMsg : pb::IMessage<CastOperationC2SMsg> {
+    private static readonly pb::MessageParser<CastOperationC2SMsg> _parser = new pb::MessageParser<CastOperationC2SMsg>(() => new CastOperationC2SMsg());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<CastOperationC2SMsg> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Usercmd.BaseReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CastOperationC2SMsg() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CastOperationC2SMsg(CastOperationC2SMsg other) : this() {
+      operationId_ = other.operationId_;
+      targetIds_ = other.targetIds_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CastOperationC2SMsg Clone() {
+      return new CastOperationC2SMsg(this);
+    }
+
+    /// <summary>Field number for the "OperationId" field.</summary>
+    public const int OperationIdFieldNumber = 1;
+    private uint operationId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint OperationId {
+      get { return operationId_; }
+      set {
+        operationId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "TargetIds" field.</summary>
+    public const int TargetIdsFieldNumber = 2;
+    private static readonly pb::FieldCodec<uint> _repeated_targetIds_codec
+        = pb::FieldCodec.ForUInt32(18);
+    private readonly pbc::RepeatedField<uint> targetIds_ = new pbc::RepeatedField<uint>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<uint> TargetIds {
+      get { return targetIds_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as CastOperationC2SMsg);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(CastOperationC2SMsg other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (OperationId != other.OperationId) return false;
+      if(!targetIds_.Equals(other.targetIds_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (OperationId != 0) hash ^= OperationId.GetHashCode();
+      hash ^= targetIds_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (OperationId != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(OperationId);
+      }
+      targetIds_.WriteTo(output, _repeated_targetIds_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (OperationId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(OperationId);
+      }
+      size += targetIds_.CalculateSize(_repeated_targetIds_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(CastOperationC2SMsg other) {
+      if (other == null) {
+        return;
+      }
+      if (other.OperationId != 0) {
+        OperationId = other.OperationId;
+      }
+      targetIds_.Add(other.targetIds_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            OperationId = input.ReadUInt32();
+            break;
+          }
+          case 18:
+          case 16: {
+            targetIds_.AddEntriesFrom(input, _repeated_targetIds_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class OperationResultS2CMsg : pb::IMessage<OperationResultS2CMsg> {
+    private static readonly pb::MessageParser<OperationResultS2CMsg> _parser = new pb::MessageParser<OperationResultS2CMsg>(() => new OperationResultS2CMsg());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<OperationResultS2CMsg> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Usercmd.BaseReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OperationResultS2CMsg() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OperationResultS2CMsg(OperationResultS2CMsg other) : this() {
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OperationResultS2CMsg Clone() {
+      return new OperationResultS2CMsg(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as OperationResultS2CMsg);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(OperationResultS2CMsg other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(OperationResultS2CMsg other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
         }
       }
     }

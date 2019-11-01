@@ -12,6 +12,7 @@ type Avatar struct {
 	uniqId  uint32
 	session i.ISession
 	name    string
+	room    i.ITurnRoom
 }
 
 func NewAvatar(id uint32, session i.ISession, name string) *Avatar {
@@ -36,4 +37,8 @@ func (this *Avatar) GetName() string {
 
 func (this *Avatar) SendData(data []byte) {
 	this.session.SendData(data)
+}
+
+func (this *Avatar) SetTurnRoom(room i.ITurnRoom) {
+	this.room = room
 }

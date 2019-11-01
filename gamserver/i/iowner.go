@@ -15,6 +15,7 @@ type ISessionOwner interface {
 type IRoomOwner interface {
 	IOwner
 	GetName() string
+	SetTurnRoom(ITurnRoom)
 }
 
 type IBattleEntity interface {

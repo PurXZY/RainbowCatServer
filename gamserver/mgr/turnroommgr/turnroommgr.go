@@ -27,9 +27,10 @@ func GetMe() *TurnRoomMgr {
 	return mgr
 }
 
-func (this *TurnRoomMgr) AddNewTurnRoom(owner i.ISessionOwner) {
+func (this *TurnRoomMgr) AddNewTurnRoom(owner i.IRoomOwner) {
 	uniqId := idmgr.GetMe().GenUniqId()
 	room := turnroom.NewTurnRoom(uniqId, owner)
 	this.turnRooms[uniqId] = room
+	owner.SetTurnRoom(room)
 	room.Init()
 }

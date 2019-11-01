@@ -63,6 +63,7 @@ func (this TurnLogic) NotifyCurTurn() {
 		BigTurnIndex:      this.curBigTurn,
 		SmallTurnIndex:    this.curSmallTurn,
 		CurEntityPosIndex: this.curTurnEntity(),
+		OperationSet:      []uint32{1, 2, 3},
 	}
 	data, err := util.EncodeCmd(usercmd.UserCmd_TurnInfo, &msg)
 	if err != nil {

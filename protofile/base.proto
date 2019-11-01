@@ -9,7 +9,9 @@ enum UserCmd {
 	IntoRoomRes = 3;
 	CreateAllBattleEntities = 4;
 	TurnInfo = 5;
-	MaxCmdId = 6;
+	CastOperationReq = 6;
+	OperationResultRes = 7;
+	MaxCmdId = 8;
 }
 
 enum PosIndex {
@@ -56,4 +58,14 @@ message TurnInfoS2CMsg{
     uint32 BigTurnIndex = 1;
     uint32 SmallTurnIndex = 2;
     uint32 CurEntityPosIndex = 3;
+	repeated uint32 OperationSet = 4;
+}
+
+message CastOperationC2SMsg{
+	uint32 OperationId = 1;
+	repeated uint32 TargetIds = 2;
+}
+
+message OperationResultS2CMsg{
+
 }
