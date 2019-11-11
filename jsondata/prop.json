@@ -21,6 +21,6 @@
     "MagicAttack": 3,
     "PhysicalDefend": 5,
     "MagicDefend": 3,
-    "MoveSpeed":  1
+    "MoveSpeed":  4
   }
 }
